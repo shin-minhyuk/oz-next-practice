@@ -1,0 +1,20 @@
+import { cat } from "@/assets/data";
+import Link from "next/link";
+
+export default async function Dog() {
+  const res = await fetch(`http://localhost:3000/api/cat`);
+  const dog = await res.json();
+  console.log(cat[0].message);
+
+  if (!cat) {
+    <div>로딩중</div>;
+  }
+
+  return (
+    <section className="flex flex-col items-center gap-4 text-[20px] font-[600]">
+      <div>{cat[0].message}</div>
+      <img className="w-[200px] h-[200px]" src={cat[0].image} />
+      <Link className="link" href="/">{`<- 메인 페이지로 이동하기`}</Link>
+    </section>
+  );
+}
